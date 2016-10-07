@@ -15,27 +15,27 @@
     ssh_key_file: .ssh/id_rsa
   register: opdk_user_info
 
-#- name: Prep known_hosts file for apigee user
-#  copy:
-#    content: "{{ local_address }}"
-#    dest: '{{opdk_user_info.home}}/.ssh/known_hosts_prep'
+- name: Prep known_hosts file for apigee user
+  copy:
+    content: "{{ local_address }}"
+    dest: '{{opdk_user_info.home}}/.ssh/known_hosts_prep'
 
-#- name: Download public key for apigee user
-#  fetch:
-#    flat: yes
-#    dest: ssh_keys/ssh_pub_key_{{ public_address }}.pub
-#    src: "{{ local_resource_path }}/ {{ opdk_user_info.ssh_key_file }}.pub"
+- name: Download public key for apigee user
+  fetch:
+    flat: yes
+    dest: ssh_keys/ssh_pub_key_{{ public_address }}.pub
+    src: "{{ local_resource_path }}/ {{ opdk_user_info.ssh_key_file }}.pub"
 
-#- name: Download known_hosts file for apigee user
-#  fetch:
-#    flat: yes
-#    dest: "{{ local_resource_path }}/ssh_keys/known_hosts_prep_{{ public_address }}.txt"
-#    src: "{{ opdk_user_info.home }}/.ssh/known_hosts_prep"
-#
-#- name: Remove known_hosts prep file
-#  file:
-#    path: "{{ opdk_user_info.home }}/.ssh/known_hosts_prep"
-#    state: absent
+- name: Download known_hosts file for apigee user
+  fetch:
+    flat: yes
+    dest: "{{ local_resource_path }}/ssh_keys/known_hosts_prep_{{ public_address }}.txt"
+    src: "{{ opdk_user_info.home }}/.ssh/known_hosts_prep"
+
+- name: Remove known_hosts prep file
+  file:
+    path: "{{ opdk_user_info.home }}/.ssh/known_hosts_prep"
+    state: absent
 
 - name: Confirm that OPDK staging folder is in place
   file:
