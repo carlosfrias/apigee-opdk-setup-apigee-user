@@ -1,5 +1,5 @@
 ---
-# tasks file for opdk-setup-apigee-user
+# tasks file for apigee-opdk-setup-apigee-user
 - name: Create the apigee group
   group:
     name: "{{ opdk_group_name }}"

@@ -14,21 +14,21 @@ separately. It is assumed that files containing credentials are stored in the ~/
 Role Variables
 --------------
 
-This role uses variables defined in the role opdk-setup-default-settings
+This role uses variables defined in the role apigee-opdk-setup-default-settings
 
 Dependencies
 ------------
 
 This depends on the following roles:
 
-* opdk-setup-default-settings.
+* apigee-opdk-setup-default-settings.
 
 Example Playbook
 ----------------
 
     - hosts: servers
       roles:
-         - { role: opdk-setup-apigee-user }
+         - { role: apigee-opdk-setup-apigee-user }
 
 License
 -------
