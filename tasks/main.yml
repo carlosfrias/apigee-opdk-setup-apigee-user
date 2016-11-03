@@ -4,6 +4,12 @@
   group:
     name: "{{ opdk_group_name }}"
     state: present
+#  register: group_status
+#
+#- name: Cache group status
+#  cache:
+#    key: group_status
+#    value: "{{ group_status.state | lower == 'present' }}"
 
 - name: Create the apigee user
   user:
@@ -58,4 +64,3 @@
     owner: '{{ opdk_user_name }}'
     mode: 0755
     state: directory
-  when: '{{ not installation_home_dir_state.stat.exists }}'
