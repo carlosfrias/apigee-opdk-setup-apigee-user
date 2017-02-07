@@ -32,7 +32,7 @@
   fetch:
     flat: yes
     dest: ssh_keys/ssh_pub_key_{{ public_address }}.pub
-    src: "{{ local_resource_path }}/ {{ opdk_user_info.ssh_key_file }}.pub"
+    src: "{{ local_resource_path }}/{{ opdk_user_info.ssh_key_file }}.pub"
 
 - name: Download known_hosts file for apigee user
   fetch:
