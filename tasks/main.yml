@@ -6,7 +6,6 @@
     state: present
 
 - name: Create the apigee user
-  become: yes
   user:
     name: "{{ opdk_user_name }}"
     comment: "OPDK user"
@@ -17,7 +16,6 @@
   register: opdk_user_info
 
 - name: Prep known_hosts file for apigee user
-  become: yes
   copy:
     content: "{{ local_address }}"
     dest: '{{opdk_user_info.home}}/.ssh/known_hosts_prep'
@@ -40,7 +38,6 @@
     state: absent
 
 - name: Confirm that OPDK staging folder is in place
-  become: yes
   file:
     path: '{{ opdk_installer_path }}'
     state: directory
@@ -55,7 +52,6 @@
   register: installation_home_dir_state
 
 - name: Setup permission for apigee installation home directory
-  become: yes
   file:
     path: '{{ apigee_installation_home }}'
     group: '{{ opdk_group_name }}'
