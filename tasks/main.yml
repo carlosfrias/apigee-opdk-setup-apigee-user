@@ -1,11 +1,21 @@
 ---
 # tasks file for apigee-opdk-setup-apigee-user
-- name: Create the apigee group
+- name: Create the apigee group using sudo
   group:
     name: "{{ opdk_group_name }}"
     state: present
+  when: pbrun_method is not defined
 
-- name: Create the apigee user
+- name: Create the apigee group using pbrun
+  become: no
+  shell: "pbrun groupadd {{ opdk_group_name }}"
+  when: pbrun_method is defined and ( pbrun_method | bool )
+
+- name: Create the apigee user using pbrun
+  shell: "pbrun useradd  -g {{ opdk_group_name }} -c 'OPDK user' {{ opdk_user_name }}"
+  when: pbrun_method is defined and ( pbrun_method | bool )
+
+- name: Create the apigee user using sudo
   user:
     name: "{{ opdk_user_name }}"
     comment: "OPDK user"
@@ -13,29 +23,7 @@
     generate_ssh_key: yes
     ssh_key_bits: 2048
     ssh_key_file: .ssh/id_rsa
-#  register: opdk_user_info
-
-#- name: Prep known_hosts file for apigee user
-#  copy:
-#    content: "{{ local_address }}"
-#    dest: '{{opdk_user_info.home}}/.ssh/known_hosts_prep'
-#
-#- name: Download public key for apigee user
-#  fetch:
-#    flat: yes
-#    dest: ssh_keys/ssh_pub_key_{{ public_address }}.pub
-#    src: "{{ local_resource_path }}/{{ opdk_user_info.ssh_key_file }}.pub"
-#
-#- name: Download known_hosts file for apigee user
-#  fetch:
-#    flat: yes
-#    dest: "{{ local_resource_path }}/ssh_keys/known_hosts_prep_{{ public_address }}.txt"
-#    src: "{{ opdk_user_info.home }}/.ssh/known_hosts_prep"
-#
-#- name: Remove known_hosts prep file
-#  file:
-#    path: "{{ opdk_user_info.home }}/.ssh/known_hosts_prep"
-#    state: absent
+  when: pbrun_method is not defined
 
 - name: Ensure that OPDK staging folder is in place
   file:
