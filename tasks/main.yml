@@ -1,21 +1,11 @@
 ---
 # tasks file for apigee-opdk-setup-apigee-user
-- name: Create the apigee group using sudo
+- name: Create the apigee group
   group:
     name: "{{ opdk_group_name }}"
     state: present
-  when: pbrun_method is not defined
 
-- name: Create the apigee group using pbrun
-  become: no
-  shell: "pbrun groupadd {{ opdk_group_name }}"
-  when: pbrun_method is defined and ( pbrun_method | bool )
-
-- name: Create the apigee user using pbrun
-  shell: "pbrun useradd  -g {{ opdk_group_name }} -c 'OPDK user' {{ opdk_user_name }}"
-  when: pbrun_method is defined and ( pbrun_method | bool )
-
-- name: Create the apigee user using sudo
+- name: Create the apigee user
   user:
     name: "{{ opdk_user_name }}"
     comment: "OPDK user"
@@ -23,7 +13,6 @@
     generate_ssh_key: yes
     ssh_key_bits: 2048
     ssh_key_file: .ssh/id_rsa
-  when: pbrun_method is not defined
 
 - name: Ensure that OPDK staging folder is in place
   file:
