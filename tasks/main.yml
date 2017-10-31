@@ -1,11 +1,13 @@
 ---
 # tasks file for apigee-opdk-setup-apigee-user
 - name: Create the apigee group
+  become: yes
   group:
     name: "{{ opdk_group_name }}"
     state: present
 
 - name: Create the apigee user
+  become: yes
   user:
     name: "{{ opdk_user_name }}"
     comment: "OPDK user"
