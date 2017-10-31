@@ -17,6 +17,7 @@
     ssh_key_file: .ssh/id_rsa
 
 - name: Ensure that OPDK staging folder is in place
+  become: yes
   file:
     path: '{{ opdk_installer_path }}'
     state: directory
