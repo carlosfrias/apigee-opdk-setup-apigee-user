@@ -5,6 +5,7 @@
   group:
     name: "{{ opdk_group_name }}"
     state: present
+  when: opdk_group_create | default(True)
 
 - name: Create the apigee user
   become: yes
