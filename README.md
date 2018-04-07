@@ -1,20 +1,22 @@
 Apigee OPDK Setup Apigee user
 =========
 
-This roles makes sure that the apigee user and ssh keys is setup on the system. 
+This roles makes sure that the apigee user is setup on the system. 
 
 Requirements
 ------------
 
-The installation of Apigee OPDK requires root access. Credentials must also be supplied to override the empty placeholders
-provided here. It is recommended that credentials be consolidated into a single credentials.yml file that can be stored 
-separately. It is assumed that files containing credentials are stored in the ~/.apigee folder. 
-
+This role requires elevated system privilege.
 
 Role Variables
 --------------
 
-This role uses variables defined in the role apigee-opdk-setup-default-settings
+| Variable Name | Description |
+| --- | --- |
+| opdk_user_name | The name of the OPDK user. OPDK user is `apigee`. No other names are allowed. |
+| opdk_group_name | The group name of the OPDK user. The group name is `apigee` |
+| opdk_group_create | Used to indicate that the group `apigee` should not be created. This is needed for those situations when the system admin chooses to manage the creation of the `apigee` group |
+| opdk_installer_path | The path used to stage installation files | 
 
 Dependencies
 ------------
@@ -33,12 +35,13 @@ Example Playbook
 License
 -------
 
-Apache License Version 2.0, January 2004
+Apache 2.0
 
 Author Information
 ------------------
 
 Carlos Frias
+
 <!-- BEGIN Google Required Disclaimer -->
 
 # Not Google Product Clause
