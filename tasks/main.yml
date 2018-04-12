@@ -13,7 +13,6 @@
     name: "{{ opdk_user_name }}"
     comment: "OPDK user"
     group: "{{ opdk_group_name }}"
-    createhome: no
 
 - name: Ensure that OPDK staging folder is in place
   become: yes
