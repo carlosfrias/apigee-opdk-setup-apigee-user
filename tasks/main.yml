@@ -17,7 +17,7 @@
 - name: Ensure that OPDK staging folder is in place
   become: yes
   file:
-    path: "{{ opdk_installer_path | default('/tmp/edge') }}"
+    path: "{{ opdk_resources_path | default('/tmp/edge') }}"
     state: directory
     group: "{{ opdk_group_name | default('apigee') }}"
     owner: "{{ opdk_user_name | default('apigee') }}"
