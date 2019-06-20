@@ -16,7 +16,7 @@ Role Variables
 | opdk_user_name | The name of the OPDK user. OPDK user is `apigee`. No other names are allowed. |
 | opdk_group_name | The group name of the OPDK user. The group name is `apigee` |
 | opdk_group_create | Used to indicate that the group `apigee` should not be created. This is needed for those situations when the system admin chooses to manage the creation of the `apigee` group |
-| opdk_installer_path | The path used to stage installation files | 
+| opdk_resources_path | The path used to stage installation files | 
 
 Dependencies
 ------------
